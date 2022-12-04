@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -54,3 +54,21 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+#devise ログイン機能
+gem 'devise'
+# kaminari ページネーション
+gem 'kaminari','~> 1.2.1'
+# dotenv 環境変数を設定
+gem 'dotenv-rails'
+# rspec テストツール
+gem 'rspec-rails'
+# rubocop コード解析
+gem 'rubocop', require: false
+gem 'rubocop-performance', require: false
+gem 'rubocop-rails', require: false
+gem 'rubocop-minitest', require: false
+gem 'rubocop-packaging', require: false
+gem 'rubocop-rspec'
+# ransack 検索機能
+gem 'ransack'
