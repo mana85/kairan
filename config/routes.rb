@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # devise
   # ユーザー用
   # URL /users/sign_in...
   devise_for :users, controllers: {
@@ -13,5 +14,34 @@ Rails.application.routes.draw do
     # devise_for :admins
     sessions: "admin/sessions"
   }
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # devise　以外
+  # ユーザー側
+  scope module: :public do
+    # ホーム
+    root to: "homes#top"
+    get "about" => "homes#about", as: "about"
+    # ユーザー
+    get 'users/my_page' => 'users#show'
+    get 'users/information/edit' => 'users#edit'
+    patch 'users/information' => 'users#update'
+    get 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    patch 'users/withdrawal' => "users#wiithdrawal", as: 'withdrawal'
+    # Flyer *告知・タグ
+    resources :flyers, only: [:index, :show, :new, :create, :destroy, :update] do
+      resources :comments, only: [:create, :destroy]
+      resource :clips, only: [:create, :destroy]
+    end
+  end
+  # 管理者用
+  namespace :admin do
+    # ホーム
+    root to: 'homes#top'
+    # ユーザー
+    resources :users, only: [:index, :show, :edit, :update]
+    # フライヤー
+    resources :flyers, only: [:index, :show, :edit, :update]
+    # コメント
+    resources :comments, only: [:index, :show, :edit, :update]
+  end
+
 end
