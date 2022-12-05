@@ -1,1 +1,54 @@
-<h1>トップページ</h1>
+<main>
+  <div class="container">
+
+    <% if user_signed_in? %>
+    <% elsif admin_signed_in? %>
+    <% else %>
+    <div class="col-12 mt-2 border bg-white p-3 text-center">
+      <h4>KaiRanへようこそ！</h4>
+      KaiRanはお知らせや告知を投稿し、自分のSNSで共有できるサービスです。
+    </div>
+    <% end %>
+
+    <div class="row mt-2 mt-lg-5">
+      <div class="col-12 col-lg-3">
+        <div>
+          <ul class="list-unstyled">
+            <li class="d-flex align-items-center">
+              <%= image_tag "new_icon_lg.png", class:"mt-2 pr-2" %>
+              お知らせを投稿する
+            </li>
+            <li class="d-flex align-items-center">
+              <%= image_tag "clip_icon_lg.png", class:"mt-2 pr-2" %>
+              クリップしたお知らせ
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+
+        <div class="border bg-white">
+          <div class="bg-info" style="width:100%; height:100px;"></div>
+          <h3 class="pt-2 pl-2 pr-2">Title</h3>
+          <div class="pl-2 pr-2">
+            Text Text Text Text Text Text Text Text Text Text Text
+            Text Text Text Text Text Text Text Text Text Text Text
+            Text Text Text Text Text Text Text Text Text Text
+          </div>
+          <div id="tag" class="pl-2 pr-2 text-info">
+            <%= image_tag "tag_icon.png" %>
+            Tag1 Tag2 Tag3
+          </div>
+          <div class="pl-2 pr-2 text-info text-right">
+            User
+            <%= image_tag "clip_icon.png" %>
+            <%= image_tag "comment_icon.png" %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
