@@ -1,0 +1,35 @@
+
+  <%= form_with model: Flyer, local: true do |f| %>
+    <div class="form-group">
+      <%= f.label "告知タイトル" %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label "告知テキスト" %>
+      <%= f.text_area :body, class: 'form-control', rows: 10 %>
+    </div>
+    <div class="form-group">
+      <%= f.label "メイン画像" %>
+      <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label "バナー画像" %>
+      <%= f.file_field :banner, accept: "image/*", class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label "URL" %>
+      <%= f.text_field :url, value: "http://", class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label "お知らせ用アラート　クリップしてくれた人にリマインダーを表示します" %>
+      <%= f.date_field :alert_date, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Tag　半角「,」で区切る事で複数設定できます。" %>
+      <%= f.text_field :tag_name, class: 'form-control' %>
+    </div>
+    <div class="actions mt-4 text-center">
+      <%= f.submit "投稿する", class: "btn btn-outline-primary" %>
+    </div>
+
+  <% end %>

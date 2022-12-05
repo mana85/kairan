@@ -1,0 +1,16 @@
+<div>
+  <table>
+    <tbody>
+      <% flyer.comments.each do |comment| %>
+      <tr>
+        <td>
+          <%= link_to comment.user.display_name user_path(comment.user) %>
+        </td>
+        <td>
+          <%= comment.comment %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
