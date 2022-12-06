@@ -16,8 +16,8 @@
         <%= tag.tag_name %>
       <% end %>
     </div>
-    <div class="pl-2 pr-2 text-info text-right">
-      <%= flyer.user.display_name %>
+    <div class="pl-2 pr-2 pb-2 text-info text-right">
+      <%= link_to flyer.user.display_name, user_path(flyer.user.id) %>
       <%= image_tag "clip_icon.png" %>
       <%= image_tag "comment_icon.png" %>
     </div>

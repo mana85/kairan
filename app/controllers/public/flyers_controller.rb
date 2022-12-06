@@ -4,7 +4,7 @@ class Public::FlyersController < ApplicationController
 
   def show
     @flyer = Flyer.find(params[:id])
-    @flyer_comment = Comment.new
+    @comment = Comment.new
   end
 
   def index
@@ -32,7 +32,9 @@ class Public::FlyersController < ApplicationController
   end
 
   def update
+    tag_list = params[:flyer][:tag_name].split(',')
     if @flyer.update(flyer_params)
+      @flyer.save_tags(tag_list)
       redirect_to flyer_path(@flyer)
       # notice: "You have updated book successfully!"
     else
@@ -43,6 +45,17 @@ class Public::FlyersController < ApplicationController
   def destroy
     @flyer.destroy
     redirect_to flyers_path
+  end
+
+  # クリップした告知を表示させる
+  def clipedflyer
+    cliped_flyers = Clip.where(user_id: current_user).pluck(:flyer_id)
+    @flyers = Flyer.where(id: cliped_flyers)
+  end
+
+  # 自分の投稿した告知を表示する
+  def myflyer
+    @flyers = Flyer.where(user_id: current_user)
   end
 
   private

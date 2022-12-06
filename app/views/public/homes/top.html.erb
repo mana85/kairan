@@ -10,41 +10,29 @@
     </div>
     <% end %>
 
-    <div class="row mt-2 mt-lg-5">
-      <div class="col-12 col-lg-3">
-        <div>
-          <ul class="list-unstyled">
-            <li class="d-flex align-items-center">
-              <%= image_tag "new_icon_lg.png", class:"mt-2 pr-2" %>
-              <%= link_to "お知らせを投稿する", new_flyer_path %>
-            </li>
-            <li class="d-flex align-items-center">
-              <%= image_tag "clip_icon_lg.png", class:"mt-2 pr-2" %>
-              クリップしたお知らせ
-            </li>
-          </ul>
+    <div class="row mt-2 mt-lg-4">
+      <% if user_signed_in? %>
+        <%= render 'public/users/menu'%>
+      <% elsif admin_signed_in? %>
+      <% else %>
+        <div class="col-12 col-lg-3">
+          <div>
+            <ul class="list-unstyled">
+              <li class="d-flex align-items-center">
+                <%= image_tag "new_icon_lg.png", class:"mt-2 pr-2" %>
+                <%= link_to "お知らせを投稿する", new_user_session_path %>
+              </li>
+              <li class="d-flex align-items-center">
+                <%= image_tag "clip_icon_lg.png", class:"mt-2 pr-2" %>
+                <%= link_to "クリップしたお知らせ", new_user_session_path %>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
+      <% end %>
 
-      <div class="col-12 col-lg-6">
-        <div class="border bg-white">
-          <div class="bg-info" style="width:100%; height:100px;"></div>
-          <h3 class="pt-2 pl-2 pr-2">Title</h3>
-          <div class="pl-2 pr-2">
-            Text Text Text Text Text Text Text Text Text Text Text
-            Text Text Text Text Text Text Text Text Text Text Text
-            Text Text Text Text Text Text Text Text Text Text
-          </div>
-          <div id="tag" class="pl-2 pr-2 text-info">
-            <%= image_tag "tag_icon.png" %>
-            Tag1 Tag2 Tag3
-          </div>
-          <div class="pl-2 pr-2 text-info text-right">
-            User
-            <%= image_tag "clip_icon.png" %>
-            <%= image_tag "comment_icon.png" %>
-          </div>
-        </div>
+      <div class="col-10 col-lg-6">
+        <%= render 'public/flyers/index', flyers: @flyers %>
       </div>
 
     </div>

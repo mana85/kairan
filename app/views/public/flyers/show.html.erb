@@ -5,13 +5,14 @@
       <div class="col-12 col-lg-3">
         メニューエリア
       </div>
+      <!--投稿されているお知らせの詳細-->
       <div class="col-10 offset-1">
         <div class="border bg-white p-5">
           <h2 class="text-center">
             <%= @flyer.title %>
           </h2>
-          <div class="text-center mt-5">
-            <%= image_tag @flyer.image %>
+          <div class="text-center mt-5 col-12">
+            <%= image_tag @flyer.image, class:"img-fluid" %>
           </div>
           <div class="mt-5">
             <%= safe_join(@flyer.body.split("\n"),tag(:br)) %>
@@ -21,25 +22,33 @@
               <%= link_to @flyer.url, @flyer.url %>
             </div>
           <% end %>
-          <div class="text-center mt-5">
-            <%= image_tag @flyer.banner %>
+          <div class="text-center mt-5 col-12">
+            <%= image_tag @flyer.banner, class:"img-fluid" %>
           </div>
           <div class="text-center mt-5">
             <%= image_tag @flyer.user.get_profile_image, size: "80x80", class:"rounded-circle" %>
             <p><%=link_to @flyer.user.display_name, "/" %></p>
           </div>
           <div id="tag" class="text-info mt-5">
-            <%= image_tag "tag_icon.png" %>
-            <% @flyer.tags.each do |tag| %>
-              <%= tag.tag_name %>
+            <% if @flyer.tags.exists? %>
+              <%= image_tag "tag_icon.png" %>
+              <% @flyer.tags.each do |tag| %>
+                <%= tag.tag_name %>
+              <% end %>
             <% end %>
           </div>
           <div class="text-right mt-5">
-            <%= link_to image_tag("clip_icon_lg.png"), "/" %>
+            <%= render "public/clips/btn", flyer: @flyer %>
           </div>
+          <% if @flyer.user == current_user %>
+            <div class="text-right mt-4">
+              <%= link_to '編集', edit_flyer_path(@flyer), class: "text-success" %>
+              <%= link_to '削除', @flyer, method: :delete, data: { confirm: '本当に消しますか？' }, class: "text-danger" %>
+            </div>
+          <% end %>
         </div>
       </div>
-
+      <!--表示されているお知らせに対するコメント-->
       <div class="col-10 offset-1 mt-5">
         <div class="border bg-white p-5">
           <%= render "public/comments/form", flyer: @flyer, comment: @comment %>
