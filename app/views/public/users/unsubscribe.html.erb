@@ -1,0 +1,14 @@
+<main>
+  <div class="container pt-5">
+
+    <div class="col-10 col-md-6 offset-1 offset-md-3 border bg-white p-3 mt-4 text-center">
+      <p>
+        退会すると会員情報やクリップした告知が閲覧できなくなります。<br />
+        退会する場合は「退会する」をクリックしてください。
+      </p>
+      <%=link_to "退会しない", users_my_page_path, class: 'btn btn-outline-success' %><br />
+      <%=link_to "退会する", withdrawal_path,method: :patch, class: 'mt-4 btn btn-outline-danger' %>
+    </div>
+
+  </div>
+</main>

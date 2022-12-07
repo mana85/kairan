@@ -1,9 +1,19 @@
 <main>
   <div class="container pt-5">
-    <div class="col-10 col-md-6 offset-1 offset-md-3 border bg-white">
 
+    <div class="col-10 col-md-6 offset-1 offset-md-3 border bg-white text-center p-0">
+      <div class="bg-info p-2" style="width:100%;">
+        <%= image_tag @user.get_profile_image, size: "80x80", class:"rounded-circle mt-2" %>
+        <h4 class="text-white"><%= @user.display_name %></h4>
+      </div>
+      <p class="text-left p-3">
+          <%= @user.description %>
+      </p>
+    </div>
+
+    <div class="col-10 col-md-6 offset-1 offset-md-3 border mt-4 bg-white">
       <h2 class="text-center mt-3">ユーザー情報の編集</h2>
-        <%= form_with model: @user, local: true do |f| %>
+        <%= form_with model: @user, url: users_information_path, local: true do |f| %>
           <div class="form-group">
             <%= f.label "名前" %>
             <%= f.text_field :display_name, class: 'form-control' %>
@@ -19,11 +29,16 @@
           <div class="form-group">
             <%= f.label "URL" %>
             <%= f.text_field :url, value: "http://", class: 'form-control' %>
+          </div>
           <div class="actions mt-4 text-center">
             <%= f.submit "変更を保存", class: "btn btn-outline-primary" %>
           </div>
         <% end %>
-
     </div>
+
+    <div class="col-10 col-md-6 offset-1 offset-md-3 border bg-white p-3 mt-4 text-center">
+      <%=link_to "退会する", unsubscribe_path, class: 'btn btn-outline-danger' %>
+    </div>
+
   </div>
 </main>

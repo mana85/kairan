@@ -26,12 +26,20 @@
 
           <!--プロフィールを表示する-->
             <% if @is_profile %>
-            <div class="col-12 mt-2 border bg-white p-3 text-center">
-              <%= image_tag @user.get_profile_image, size: "80x80", class:"rounded-circle" %>
-              <h4><%= @user.display_name %></h4>
-              <p class="text-left">
+            <div class="col-12 mt-2 border bg-white p-0 text-center">
+              <div class="bg-info p-2" style="width:100%;">
+                <%= image_tag @user.get_profile_image, size: "80x80", class:"rounded-circle" %>
+                <h4 class="text-white"><%= @user.display_name %></h4>
+              </div>
+              <div class="text-left p-3">
                   <%= @user.description %>
-              </p>
+              </div>
+              <div class="text-left p-3">
+                <% if @user.url.length > 7 %>
+                  <%=image_tag "home_icon_lg.png", size: "30x30" %>
+                  <%= link_to @user.url.truncate(20), @user.url  %>
+                <% end %>
+              </div>
             </div>
             <% end %>
 

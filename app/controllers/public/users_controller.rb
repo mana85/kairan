@@ -13,12 +13,22 @@ class Public::UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
     @user.update(user_params)
+    redirect_to request.referer
+  end
+
+  def unsubscribe
+  end
+
+  def withdrawal
+    @user = current_user
+    @user.update(is_delete:true)
+    redirect_to root_path
   end
 
   private
