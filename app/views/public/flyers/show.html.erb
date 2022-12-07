@@ -27,7 +27,7 @@
           </div>
           <div class="text-center mt-5">
             <%= image_tag @flyer.user.get_profile_image, size: "80x80", class:"rounded-circle" %>
-            <p><%=link_to @flyer.user.display_name, "/" %></p>
+            <p><%=link_to @flyer.user.display_name, user_path(@flyer.user.id) %></p>
           </div>
           <div id="tag" class="text-info mt-5">
             <% if @flyer.tags.exists? %>

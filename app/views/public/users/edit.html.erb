@@ -1,0 +1,29 @@
+<main>
+  <div class="container pt-5">
+    <div class="col-10 col-md-6 offset-1 offset-md-3 border bg-white">
+
+      <h2 class="text-center mt-3">ユーザー情報の編集</h2>
+        <%= form_with model: @user, local: true do |f| %>
+          <div class="form-group">
+            <%= f.label "名前" %>
+            <%= f.text_field :display_name, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label "プロフィール" %>
+            <%= f.text_area :description, class: 'form-control', rows: 5 %>
+          </div>
+          <div class="form-group">
+            <%= f.label "アイコン" %>
+            <%= f.file_field :profile_image, accept: "image/*", class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label "URL" %>
+            <%= f.text_field :url, value: "http://", class: 'form-control' %>
+          <div class="actions mt-4 text-center">
+            <%= f.submit "変更を保存", class: "btn btn-outline-primary" %>
+          </div>
+        <% end %>
+
+    </div>
+  </div>
+</main>

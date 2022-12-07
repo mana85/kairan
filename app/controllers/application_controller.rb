@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
 
   # 新規登録時の項目カスタム対応
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:display_name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:display_name, :description, :url, :is_delete])
   end
 end

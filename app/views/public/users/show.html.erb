@@ -1,1 +1,52 @@
-<%= current_user.display_name %>
+<main>
+  <div class="container">
+
+    <div class="row mt-2 mt-lg-4">
+      <% if user_signed_in? %>
+        <%= render 'public/users/menu'%>
+      <% elsif admin_signed_in? %>
+      <% else %>
+        <div class="col-12 col-lg-3">
+          <div>
+            <ul class="list-unstyled">
+              <li class="d-flex align-items-center">
+                <%= image_tag "new_icon_lg.png", class:"mt-2 pr-2" %>
+                <%= link_to "お知らせを投稿する", new_user_session_path %>
+              </li>
+              <li class="d-flex align-items-center">
+                <%= image_tag "clip_icon_lg.png", class:"mt-2 pr-2" %>
+                <%= link_to "クリップしたお知らせ", new_user_session_path %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="col-10 col-lg-6">
+
+          <!--プロフィールを表示する-->
+            <% if @is_profile %>
+            <div class="col-12 mt-2 border bg-white p-3 text-center">
+              <%= image_tag @user.get_profile_image, size: "80x80", class:"rounded-circle" %>
+              <h4><%= @user.display_name %></h4>
+              <p class="text-left">
+                  <%= @user.description %>
+              </p>
+            </div>
+            <% end %>
+
+          <div>
+              <% if @is_profile %>
+                  <h4 class="text-info d-flex align-items-center mt-3"><%= image_tag "flyers_icon_lg.png", class:"mt-2 pr-2" %>
+                  <%= @user.display_name %>さんのお知らせ</h4>
+              <% else %>
+                  <h4 class="text-info d-flex align-items-center"><%= image_tag "flyers_icon_lg.png", class:"mt-2 pr-2" %>
+                  新着お知らせ</h4>
+              <% end %>
+          </div>
+        <%= render 'public/flyers/index', flyers: @flyers %>
+      </div>
+
+    </div>
+  </div>
+</main>

@@ -18,7 +18,7 @@ class User < ApplicationRecord
   # 表示名(50文字まで)
   validates :display_name, presence: true, length: { maximum: 25 }
   # URL
-  # validates :url, format: /\A#{URI::regexp(%w(http https))}\z/
+  validates :url, format: /\A#{URI::regexp(%w(http https))}\z/
 
   # アイコン用の画像
   def get_profile_image

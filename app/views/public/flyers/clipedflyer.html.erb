@@ -5,6 +5,10 @@
       <%= render 'public/users/menu'%>
 
       <div class="col-10 col-lg-6">
+        <div>
+          <h4 class="text-info d-flex align-items-center"><%= image_tag "clip_icon_lg.png", class:"mt-2 pr-2" %>
+          クリップしたお知らせ</h4>
+        </div>
         <%= render 'public/flyers/index', flyers: @flyers %>
       </div>
 

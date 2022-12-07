@@ -1,6 +1,10 @@
 class Public::FlyersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!,only: [:new]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+
+  def new
+    @flyer = Flyer.new
+  end
 
   def show
     @flyer = Flyer.find(params[:id])
@@ -29,6 +33,9 @@ class Public::FlyersController < ApplicationController
   end
 
   def edit
+    @flyer = Flyer.find(params[:id])
+    # 現在のタグを取得して表示する
+    @tags = @flyer.tags.pluck(:tag_name).join(",")
   end
 
   def update

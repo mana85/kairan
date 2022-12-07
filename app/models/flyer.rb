@@ -31,7 +31,7 @@ class Flyer < ApplicationRecord
     new_tags = saveflyer_tags - current_tags
     # 古いタグを消す
     old_tags.each do |old_name|
-      self.tags.delete Tag.find_by(name: old_name)
+      self.tags.delete Tag.find_by(tag_name: old_name)
     end
     # 新しいタグを保存する
     new_tags.each do |new_name|
