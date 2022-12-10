@@ -1,0 +1,32 @@
+<main>
+  <div class="container">
+    <div class="col-10 col-lg-6 offset-lg-3">
+
+      <!--プロフィールを表示する-->
+        <div class="col-12 mt-2 border bg-white p-0 text-center">
+          <div class="bg-info p-2" style="width:100%;">
+            <%= image_tag @user.get_profile_image, size: "80x80", class:"rounded-circle" %>
+            <h4 class="text-white"><%= @user.display_name %></h4>
+          </div>
+          <div class="text-left p-3">
+              <%= @user.description %>
+          </div>
+          <div class="text-left p-3">
+            <% if @user.url.blank? %>
+            <% elsif @user.url.length > 7 %>
+              <%=image_tag "home_icon_lg.png", size: "30x30" %>
+              <%= link_to @user.url.truncate(20), @user.url  %>
+            <% end %>
+          </div>
+          <div class="p-3">
+            <% if !@user.is_delete %>
+              <%=link_to "退会状態にする", admin_user_path(@user.id), method: :patch, class: 'mt-4 btn btn-outline-danger' %>
+            <% else %>
+              退会済
+            <% end %>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</main>

@@ -25,15 +25,18 @@ Rails.application.routes.draw do
     get 'users/information/edit' => 'users#edit'
     patch 'users/information' => 'users#update'
     get 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
-    patch 'users/withdrawal' => "users#wiithdrawal", as: 'withdrawal'
+    patch 'users/withdrawal' => "users#withdrawal", as: 'withdrawal'
     resources :users, only: [:show]
     # Flyer *告知・タグ
     resources :flyers, only: [:index, :show, :new, :edit, :create, :destroy, :update] do
       resources :comments, only: [:create, :destroy]
       resource :clips, only: [:create, :destroy]
     end
+    get "search_word" => "flyers#search_word"
+
     get 'flyer/clipedflyer' => 'flyers#clipedflyer', as: 'clipedflyer'
     get 'flyer/myflyer' => 'flyers#myflyer', as: 'myflyer'
+    get 'flyer/tag/:id' => 'flyers#tag', as: 'tag'
   end
   # 管理者用
   namespace :admin do

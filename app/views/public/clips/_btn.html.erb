@@ -2,15 +2,15 @@
 <% if user_signed_in? %>
   <% if flyer.cliped_by?(current_user) %>
     <%= link_to flyer_clips_path(flyer), method: :delete, remote: true do %>
-      <%= image_tag "clip_icon_lg.png" %>
+      <%= image_tag "clip_icon_lg_off.png", style: "height:100%;width:100%;" %>
     <% end %>
   <% else %>
     <%= link_to flyer_clips_path(flyer), method: :post, remote: true do %>
-      <%= image_tag "clip_icon_lg_off.png" %>
+      <%= image_tag "clip_icon_lg.png", style: "height:100%;width:100%;" %>
     <% end %>
   <% end %>
 <% else %>
   <%= link_to new_user_session_path do %>
-      <%= image_tag "clip_icon_lg_off.png" %>
+      <%= image_tag "clip_icon_lg.png", style: "height:100%;width:100%;" %>
     <% end %>
 <% end %>

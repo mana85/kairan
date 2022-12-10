@@ -20,6 +20,11 @@ class User < ApplicationRecord
   # URL
   validates :url, format: /\A#{URI::regexp(%w(http https))}\z/
 
+  # 退会処理をしたユーザーがログインできないようにする。
+  def active_for_authentication?
+    super && (is_delete == false)
+  end
+
   # アイコン用の画像
   def get_profile_image
     (profile_image.attached?) ? profile_image: 'no_image.jpg'

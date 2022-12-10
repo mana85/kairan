@@ -38,24 +38,16 @@
               <% end %>
             <% end %>
           </div>
-          <div class="col-1 offset-11 mt-3">
-            <div style="width:40px;height:40px;">
-              <%= render "public/clips/btn", flyer: @flyer %>
-            </div>
+          <div class="text-center">
+            <!--告知を非表示にする-->
+            <% if @flyer.user.is_delete %>
+              退会ユーザーです
+            <% elsif @flyer.is_deleted %>
+              非表示中
+            <% else %>
+              <%=link_to "非表示にする", admin_flyer_path(@flyer.id), method: :patch, class: 'mt-4 btn btn-outline-danger' %>
+            <% end %>
           </div>
-          <% if @flyer.user == current_user %>
-            <div class="text-right mt-4">
-              <%= link_to '編集', edit_flyer_path(@flyer), class: "text-success" %>
-              <%= link_to '削除', @flyer, method: :delete, data: { confirm: '本当に消しますか？' }, class: "text-danger" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-      <!--表示されているお知らせに対するコメント-->
-      <div class="col-10 offset-1 mt-5">
-        <div class="border bg-white p-5">
-          <%= render "public/comments/form", flyer: @flyer, comment: @comment %>
-          <%= render "public/comments/index", flyer: @flyer %>
         </div>
       </div>
 

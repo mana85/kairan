@@ -65,6 +65,17 @@ class Public::FlyersController < ApplicationController
     @flyers = Flyer.where(user_id: current_user)
   end
 
+  # タグ検索
+  def tag
+    @tag = Tag.find(params[:id])
+    tag_flyers = FlyerTag.where(tag_id: params[:id]).pluck(:flyer_id)
+    @flyers = Flyer.where(id: tag_flyers)
+  end
+
+  # 検索
+    def search_word
+    end
+
   private
 
   def flyer_params

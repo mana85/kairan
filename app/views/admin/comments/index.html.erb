@@ -1,0 +1,42 @@
+<main>
+  <div class="container">
+    <div class="col-12">
+
+      <div class="border bg-white mt-3 p-3">
+        <p class="text-center">コメント一覧</p>
+        <table class="table">
+          <thead>
+            <td><strong>ユーザー名</strong></td>
+            <td><strong>コメント</strong></td>
+            <td><strong>表示ステータス</strong></td>
+            <td><strong>非表示設定</strong></td>
+          </thead>
+          <tbody>
+            <% @comments.each do |comment| %>
+            <tr>
+              <td><%= link_to comment.user.display_name, admin_user_path(comment.user.id) %></td>
+              <td><%= comment.comment %></td>
+              <td>
+                <%if comment.is_deleted %>
+                  <span class="text-danger">非表示</span>
+                <% elsif comment.user.is_delete %>
+                  <span class="text-danger">退会ユーザー</span>
+                <% else %>
+                  <span class="text-success">表示中</span>
+                <% end %>
+              </td>
+              <td>
+                <% if comment.is_deleted || comment.user.is_delete %>
+                <% else %>
+                  <%=link_to "非表示にする", admin_comment_path(comment.id), method: :patch, class: 'btn btn-outline-danger btn-sm' %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+        </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</main>

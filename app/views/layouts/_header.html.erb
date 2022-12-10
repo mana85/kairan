@@ -2,9 +2,13 @@
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container">
 
-      <a class="navbar-brand p-3" href="/">
-        <%= image_tag "kairan_logo.png" %>
-      </a>
+      <div class="p-3">
+        <% if admin_signed_in? %>
+          <%=link_to image_tag("kairan_logo.png"), admin_root_path %>
+        <% else %>
+          <%=link_to image_tag("kairan_logo.png"), "/" %>
+        <% end %>
+      </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -12,6 +16,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
+        <!--ログインユーザー-->
         <li class="nav-item">
           <%= link_to image_tag(current_user.get_profile_image, size: "40x40", class:"rounded-circle"),users_my_page_path %>
         </li>
@@ -22,8 +27,21 @@
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:'nav-link text-white' %>
         </li>
         <% elsif admin_signed_in? %>
-        アドミンログイン中
+        <!--アドミンログイン中-->
+        <li class="nav-item">
+          <%=link_to "お知らせ一覧", admin_root_path, class:'nav-link text-white' %>
+        </li>
+        <li class="nav-item">
+          <%=link_to "ユーザー一覧", admin_users_path, class:'nav-link text-white' %>
+        </li>
+        <li class="nav-item">
+          <%=link_to "コメント一覧", admin_comments_path, class:'nav-link text-white' %>
+        </li>
+        <li class="nav-item">
+          <%=link_to "ログアウト", destroy_admin_session_path, method: :delete, class:'nav-link text-white' %>
+        </li>
         <% else %>
+        <!--非ログイン中-->
           <li class="nav-item">
             <%=link_to "About", "/about", class:'nav-link text-white' %>
           </li>
@@ -34,6 +52,12 @@
             <%= link_to "ログイン", new_user_session_path, class:'nav-link text-white' %>
           </li>
         <% end %>
+          <li class="mt-1">
+            <%= search_form_for @q, url: search_word_path, class:"search-form" do |f| %>
+            <%= f.search_field :body_cont, class: 'form-control', class:"inline-block", placeholder: "検索" %>
+            <%= f.submit "検索", class: "btn btn-outline-light btn-sm inline-block" %>
+            <% end %>
+          </li>
         </ul>
 
       </div>

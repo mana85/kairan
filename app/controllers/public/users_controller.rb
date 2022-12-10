@@ -28,6 +28,7 @@ class Public::UsersController < ApplicationController
   def withdrawal
     @user = current_user
     @user.update(is_delete:true)
+    reset_session
     redirect_to root_path
   end
 

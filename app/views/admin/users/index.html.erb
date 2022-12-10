@@ -1,0 +1,31 @@
+<main>
+  <div class="container">
+    <div class="col-12 col-lg-6 offset-lg-3">
+
+      <div class="border bg-white mt-3 p-3">
+        <p class="text-center">ユーザー一覧</p>
+        <table class="table">
+          <thead>
+            <td><strong>ユーザー名</strong></td>
+            <td><strong>会員ステータス</strong></td>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+            <tr>
+              <td><%= link_to user.display_name, admin_user_path(user.id)%></td>
+              <td>
+                <%if user.is_delete %>
+                  <span class="text-danger">退会済み</span>
+                <% else %>
+                  <span class="text-success">有効</span>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+        </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</main>

@@ -35,7 +35,8 @@
                   <%= @user.description %>
               </div>
               <div class="text-left p-3">
-                <% if @user.url.length > 7 %>
+                <% if @user.url.blank? %>
+                <% elsif @user.url.length > 7 %>
                   <%=image_tag "home_icon_lg.png", size: "30x30" %>
                   <%= link_to @user.url.truncate(20), @user.url  %>
                 <% end %>
@@ -45,11 +46,15 @@
 
           <div>
               <% if @is_profile %>
-                  <h4 class="text-info d-flex align-items-center mt-3"><%= image_tag "flyers_icon_lg.png", class:"mt-2 pr-2" %>
-                  <%= @user.display_name %>さんのお知らせ</h4>
+                  <h4 class="text-info d-flex align-items-center mt-3">
+                    <%= image_tag "flyers_icon_lg.png", class:"mt-2 pr-2" %>
+                    <%= @user.display_name %>さんのお知らせ
+                  </h4>
               <% else %>
-                  <h4 class="text-info d-flex align-items-center"><%= image_tag "flyers_icon_lg.png", class:"mt-2 pr-2" %>
-                  新着お知らせ</h4>
+                  <h4 class="text-info d-flex align-items-center">
+                    <%= image_tag "flyers_icon_lg.png", class:"mt-2 pr-2" %>
+                    新着お知らせ
+                  </h4>
               <% end %>
           </div>
         <%= render 'public/flyers/index', flyers: @flyers %>
