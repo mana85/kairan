@@ -9,7 +9,7 @@ class User < ApplicationRecord
   # コメント
   has_many :comments, dependent: :destroy
   # クリップ
-  has_many :clips, dependent: :destroy
+  has_many :clips, dependent: :destroy, through: :flyers
 
   # アイコン
   has_one_attached :profile_image

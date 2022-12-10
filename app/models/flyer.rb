@@ -7,7 +7,7 @@ class Flyer < ApplicationRecord
   # コメント
   has_many :comments, dependent: :destroy
   # クリップ
-  has_many :clips, dependent: :destroy
+  has_many :clips, dependent: :destroy, through: :user
   # タグ
   has_many :flyer_tags, dependent: :destroy
   has_many :tags, through: :flyer_tags

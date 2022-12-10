@@ -1,0 +1,15 @@
+<% flyers.each do |flyer| %>
+  <%= flyer.clips.where(user_id: current_user.id).length %>
+<!--アラート取得テスト-->
+  <% flyer.clips.each do |fc| %>
+    <%if fc.user_id == current_user.id %>
+      <%= flyer.title %>
+      <% if !fc.is_alert %>
+        アラート受け取ってないですぞ
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= flyer.alert_date %><br />
+<% end %>
+ユーザーから取得？
+<%= current_user.clips.length %>

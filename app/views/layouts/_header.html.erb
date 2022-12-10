@@ -18,7 +18,7 @@
         <% if user_signed_in? %>
         <!--ログインユーザー-->
         <li class="nav-item">
-          <%= link_to image_tag(current_user.get_profile_image, size: "40x40", class:"rounded-circle"),users_my_page_path %>
+          <%= link_to image_tag(current_user.get_profile_image, size: "40x40", class:"rounded-circle position-relative"),users_my_page_path %>
         </li>
         <li class="nav-item">
           <%=link_to current_user.display_name, users_my_page_path, class:'nav-link text-white' %>
