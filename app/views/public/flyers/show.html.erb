@@ -38,18 +38,25 @@
               <% end %>
             <% end %>
           </div>
-          <div class="col-2 offset-10 mt-3">
+          <div class="col-3 offset-9 mt-3">
+            <!--クリップ-->
             <div style="width:40px;height:40px;display:inline-block;">
               <%= render "public/clips/btn", flyer: @flyer %>
             </div>
-            <%= link_to image_tag('Twitter_icon_lg.png'), "https://twitter.com/share?url=#{request.url}/&text=#{@flyer.title}", title: 'Twitter', target: '_blank' %>
+            <!--URLをコピーする-->
+            <input id="copyTarget" type="hidden" value=<%= "#{request.url}" %> readonly style="display:inline-block;">
+            <%= image_tag 'share_icon_lg.png', onclick:"copyToClipboard()" %>
+            <!--Twitterに共有する-->
+            <%=link_to image_tag('Twitter_icon_lg.png'), "https://twitter.com/share?url=#{request.url}/&text=#{@flyer.title}", title: 'Twitter', target: '_blank' %>
           </div>
           <% if @flyer.user == current_user %>
             <div class="text-right mt-4">
               <%= link_to '編集', edit_flyer_path(@flyer), class: "text-success" %>
               <%= link_to '削除', @flyer, method: :delete, data: { confirm: '本当に消しますか？' }, class: "text-danger" %>
             </div>
+            <div>
           <% end %>
+
         </div>
       </div>
       <!--表示されているお知らせに対するコメント-->
@@ -63,3 +70,20 @@
     </div>
   </div>
 </main>
+
+<!--URLをコピーする-->
+<script>
+        function copyToClipboard() {
+            // コピー対象をJavaScript上で変数として定義する
+            var copyTarget = document.getElementById("copyTarget");
+
+            // コピー対象のテキストを選択する
+            copyTarget.select();
+
+            // 選択しているテキストをクリップボードにコピーする
+            document.execCommand("Copy");
+
+            // コピーをお知らせする
+            alert("アドレスをコピーしました : " + copyTarget.value);
+        }
+    </script>
