@@ -22,7 +22,7 @@
             <% if !@user.is_delete %>
               <%=link_to "退会状態にする", admin_user_path(@user.id), method: :patch, class: 'mt-4 btn btn-outline-danger' %>
             <% else %>
-              退会済
+              <%=link_to "退会状態を解除", admin_user_path(@user.id), method: :patch, class: 'mt-4 btn btn-outline-warning' %>
             <% end %>
           </div>
         </div>

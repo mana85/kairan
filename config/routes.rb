@@ -33,7 +33,6 @@ Rails.application.routes.draw do
       resource :clips, only: [:create, :destroy]
     end
     get "search_word" => "flyers#search_word"
-
     get 'flyer/clipedflyer' => 'flyers#clipedflyer', as: 'clipedflyer'
     get 'flyer/myflyer' => 'flyers#myflyer', as: 'myflyer'
     get 'flyer/tag/:id' => 'flyers#tag', as: 'tag'

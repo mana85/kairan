@@ -9,6 +9,10 @@ class Public::FlyersController < ApplicationController
   def show
     @flyer = Flyer.find(params[:id])
     @comment = Comment.new
+    # リマインダーとしてアラートされた告知を閲覧したときだけクリップのアラート確認項目をTrueに更新する
+    if(params[:alert_check])
+      current_user.clips.find_by(flyer_id: @flyer.id).update(is_alert: true)
+    end
   end
 
   def index

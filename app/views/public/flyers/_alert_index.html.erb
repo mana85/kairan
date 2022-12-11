@@ -1,0 +1,25 @@
+<% alert_flyers.each do|alert_flyer| %>
+  <% if alert_flyer.user.is_delete || alert_flyer.is_deleted %>
+  <% else %>
+    <div class="border bg-white mt-3">
+      <div style="width:100%; height:100px;position:relative;overflow:hidden;">
+        <%= image_tag alert_flyer.banner, style:"position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);" %>
+      </div>
+      <h3 class="pt-2 pl-2 pr-2">
+        <%= link_to alert_flyer.title.truncate(20), flyer_path(alert_flyer.id, alert_check: true) %>
+      </h3>
+      <div class="pl-2 pr-2">
+        <%= alert_flyer.body.truncate(70) %>
+      </div>
+      <div id="tag" class="pl-2 pr-2 text-info">
+        <%= image_tag "tag_icon.png" %>
+        <% alert_flyer.tags.each do |tag| %>
+          <%= link_to tag.tag_name, tag_path(tag.id) %>
+        <% end %>
+      </div>
+      <div class="pl-2 pr-2 pb-2 text-info text-right">
+        <%= link_to alert_flyer.user.display_name, user_path(alert_flyer.user.id) %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
