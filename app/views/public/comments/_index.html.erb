@@ -14,7 +14,7 @@
             <%= comment.comment %> <br />
             <small><%= link_to comment.user.display_name, user_path(comment.user.id) %>
             <% if comment.user == current_user %>
-              <%= link_to "削除", flyer_comment_path(flyer, comment), method: :delete, class:"text-danger" %></small>
+              <%= link_to "削除", flyer_comment_path(flyer, comment), method: :delete, remote: true, class:"text-danger" %></small>
             <% end %>
           </td>
         </tr>

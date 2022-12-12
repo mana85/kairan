@@ -20,7 +20,7 @@
       </div>
       <div class="pl-2 pr-2 pb-2 text-info text-right">
         <%= link_to flyer.user.display_name, user_path(flyer.user.id) %>
-        <div style="display:inline-block;width:25@x;height:25px;">
+        <div class=<%= "clip-" + flyer.id.to_s %> style="display:inline-block;width:25@x;height:25px;">
           <%= render "public/clips/btn", flyer: flyer %>
         </div>
       </div>

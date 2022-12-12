@@ -39,7 +39,7 @@
           </div>
           <div class="col-1 offset-11 mt-3">
             <!--クリップ-->
-            <div style="width:40px;height:40px;display:inline-block;">
+            <div class=<%= "clip-" + @flyer.id.to_s %> style="width:40px;height:40px;display:inline-block;">
               <%= render "public/clips/btn", flyer: @flyer %>
             </div>
           </div>
@@ -68,7 +68,9 @@
       <div class="col-10 offset-1 mt-3">
         <div class="border bg-white p-5">
           <%= render "public/comments/form", flyer: @flyer, comment: @comment %>
-          <%= render "public/comments/index", flyer: @flyer %>
+          <div class="comment-index">
+            <%= render "public/comments/index", flyer: @flyer %>
+          </div>
         </div>
       </div>
 
