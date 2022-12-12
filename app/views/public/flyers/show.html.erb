@@ -17,8 +17,7 @@
           <div class="mt-5">
             <%= safe_join(@flyer.body.split("\n"),tag(:br)) %>
           </div>
-          <% if @flyer.url.blank? %>
-          <% elsif @flyer.url.length > 7 %>
+          <% if @flyer.url.present? && @flyer.url.length > 7 %>
             <div class="text-center mt-5">
               <%= link_to @flyer.url, @flyer.url %>
             </div>
