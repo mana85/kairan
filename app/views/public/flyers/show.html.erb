@@ -7,7 +7,7 @@
       </div>
       <!--投稿されているお知らせの詳細-->
       <div class="col-10 offset-1">
-        <div class="border bg-white p-5">
+        <div class="border bg-white p-2 p-lg-5">
           <h2 class="text-center">
             <%= @flyer.title %>
           </h2>
@@ -34,33 +34,39 @@
             <% if @flyer.tags.exists? %>
               <%= image_tag "tag_icon.png" %>
               <% @flyer.tags.each do |tag| %>
-                <%= tag.tag_name %>
+                <%= link_to tag.tag_name, tag_path(tag.id) %>
               <% end %>
             <% end %>
           </div>
-          <div class="col-3 offset-9 mt-3">
+          <div class="col-1 offset-11 mt-3">
             <!--クリップ-->
             <div style="width:40px;height:40px;display:inline-block;">
               <%= render "public/clips/btn", flyer: @flyer %>
             </div>
-            <!--URLをコピーする-->
-            <input id="copyTarget" type="hidden" value=<%= "#{request.url}" %> readonly style="display:inline-block;">
-            <%= image_tag 'share_icon_lg.png', onclick:"copyToClipboard()" %>
-            <!--Twitterに共有する-->
-            <%=link_to image_tag('Twitter_icon_lg.png'), "https://twitter.com/share?url=#{request.url}/&text=#{@flyer.title}", title: 'Twitter', target: '_blank' %>
           </div>
           <% if @flyer.user == current_user %>
             <div class="text-right mt-4">
               <%= link_to '編集', edit_flyer_path(@flyer), class: "text-success" %>
               <%= link_to '削除', @flyer, method: :delete, data: { confirm: '本当に消しますか？' }, class: "text-danger" %>
             </div>
-            <div>
           <% end %>
-
         </div>
       </div>
+
+      <div class="col-10 offset-1 mt-3">
+        <div class="border bg-white p-5 text-center">
+          <h5 class="p-3 text-info">共有</h5>
+            <!--シェア機能-->
+            <!--URLをコピーする-->
+            <input id="copyTarget"  type="text" value=<%= "#{request.url}" %> readonly style="display:inline-block;", class="pr-2 col-8 form-control">
+            <%= image_tag 'share_icon_lg.png', onclick:"copyToClipboard()", style:"cursor: pointer;", class:"pr-3" %>
+            <!--Twitterに共有する-->
+            <%=link_to image_tag('Twitter_icon_lg.png'), "https://twitter.com/share?url=#{request.url}/&text=#{@flyer.title}", title: 'Twitter', target: '_blank', class:"pr-2" %>
+        </div>
+      </div>
+
       <!--表示されているお知らせに対するコメント-->
-      <div class="col-10 offset-1 mt-5">
+      <div class="col-10 offset-1 mt-3">
         <div class="border bg-white p-5">
           <%= render "public/comments/form", flyer: @flyer, comment: @comment %>
           <%= render "public/comments/index", flyer: @flyer %>

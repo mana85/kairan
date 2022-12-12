@@ -1,7 +1,7 @@
 <%= form_with(model:[flyer, comment], local:false) do |f| %>
   <div class="row">
     <div class="form-group col-11">
-      <%= f.text_field :comment, placeholder: "コメントを送る", class: 'form-control' %>
+      <%= f.text_field :comment, placeholder: "コメントする", class: 'form-control' %>
     </div>
     <div class="form_group col-1">
       <%= f.submit "投稿", class: "btn btn-outline-primary" %>
