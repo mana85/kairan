@@ -20,6 +20,14 @@ class User < ApplicationRecord
   # URL
   validates :url, format: /\A#{URI::regexp(%w(http https))}\z/
 
+  # ゲストログイン
+  def self.guest
+    find_or_create_by!(display_name: 'guestuser', email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.display_name = "guestuser"
+    end
+  end
+
   # 退会処理をしたユーザーがログインできないようにする。
   def active_for_authentication?
     super && (is_delete == false)
