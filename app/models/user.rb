@@ -25,6 +25,7 @@ class User < ApplicationRecord
     find_or_create_by!(display_name: 'guestuser', email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.display_name = "guestuser"
+      user.url = "http://"
     end
   end
 
