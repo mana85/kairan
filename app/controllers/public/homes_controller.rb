@@ -1,5 +1,5 @@
 class Public::HomesController < ApplicationController
   def top
-    @flyers = Flyer.all.order(id: :DESC)
+    @flyers = Flyer.all.order(id: :DESC).page(params[:page])
   end
 end

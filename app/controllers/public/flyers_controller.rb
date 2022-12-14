@@ -17,7 +17,7 @@ class Public::FlyersController < ApplicationController
 
   def index
     # 登録が新しい順から並べる
-    @flyers = Flyer.all.order(id: :DESC)
+    @flyers = Flyer.all.order(id: :DESC).page(params[:page])
     @flyer = Flyer.new
   end
 
@@ -61,19 +61,19 @@ class Public::FlyersController < ApplicationController
   # クリップした告知を表示させる
   def clipedflyer
     cliped_flyers = Clip.where(user_id: current_user).pluck(:flyer_id)
-    @flyers = Flyer.where(id: cliped_flyers)
+    @flyers = Flyer.where(id: cliped_flyers).page(params[:page])
   end
 
   # 自分の投稿した告知を表示する
   def myflyer
-    @flyers = Flyer.where(user_id: current_user)
+    @flyers = Flyer.where(user_id: current_user).page(params[:page])
   end
 
   # タグ検索
   def tag
     @tag = Tag.find(params[:id])
     tag_flyers = FlyerTag.where(tag_id: params[:id]).pluck(:flyer_id)
-    @flyers = Flyer.where(id: tag_flyers)
+    @flyers = Flyer.where(id: tag_flyers).page(params[:page])
   end
 
   # 検索

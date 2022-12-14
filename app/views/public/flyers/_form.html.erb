@@ -18,7 +18,6 @@
     </div>
     <div class="form-group">
       <%= f.label "URL" %>
-      <%= f.text_field :url, class: 'form-control', value: "#{'http://' if flyer.url.blank?}" %>
       <% if flyer.url.blank? %>
         <%= f.text_field :url, class: 'form-control', value: "http://" %>
       <% else %>
