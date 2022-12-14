@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+  before_action :ensure_guest_user, only:[:edit]
   def show
     # 自分のページとしての表示と他のユーザーの詳細表示の出し分けをする
     if request.fullpath == "/users/my_page"
@@ -42,4 +43,12 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:display_name, :description, :profile_image, :url)
   end
+
+  def ensure_guest_user
+    @user = User.find(current_user.id)
+    if @user.display_name == "guestuser"
+      redirect_to user_path(current_user), notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    end
+  end
+
 end

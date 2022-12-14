@@ -8,7 +8,10 @@
       <!--投稿されているお知らせの詳細-->
       <div class="col-10 offset-1">
         <div class="border bg-white p-2 p-lg-5">
-          <h2 class="text-center">
+          <div class="text-center mt-5 col-12">
+            <%= image_tag @flyer.banner, class:"img-fluid" %>
+          </div>
+          <h2 class="text-center mt-5">
             <%= @flyer.title %>
           </h2>
           <div class="text-center mt-5 col-12">
@@ -19,12 +22,10 @@
           </div>
           <% if @flyer.url.present? && @flyer.url.length > 7 %>
             <div class="text-center mt-5">
+              <%= image_tag "home_icon_lg.png", size: "25x25" %>
               <%= link_to @flyer.url, @flyer.url %>
             </div>
           <% end %>
-          <div class="text-center mt-5 col-12">
-            <%= image_tag @flyer.banner, class:"img-fluid" %>
-          </div>
           <div class="text-center mt-5">
             <%= image_tag @flyer.user.get_profile_image, size: "80x80", class:"rounded-circle" %>
             <p><%=link_to @flyer.user.display_name, user_path(@flyer.user.id) %></p>
@@ -80,17 +81,17 @@
 
 <!--URLをコピーする-->
 <script>
-        function copyToClipboard() {
-            // コピー対象をJavaScript上で変数として定義する
-            var copyTarget = document.getElementById("copyTarget");
+  function copyToClipboard() {
+      // コピー対象をJavaScript上で変数として定義する
+      var copyTarget = document.getElementById("copyTarget");
 
-            // コピー対象のテキストを選択する
-            copyTarget.select();
+      // コピー対象のテキストを選択する
+      copyTarget.select();
 
-            // 選択しているテキストをクリップボードにコピーする
-            document.execCommand("Copy");
+      // 選択しているテキストをクリップボードにコピーする
+      document.execCommand("Copy");
 
-            // コピーをお知らせする
-            alert("アドレスをコピーしました : " + copyTarget.value);
-        }
-    </script>
+      // コピーをお知らせする
+      alert("アドレスをコピーしました : " + copyTarget.value);
+  }
+</script>

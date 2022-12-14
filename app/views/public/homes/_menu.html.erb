@@ -1,0 +1,39 @@
+<div class="col-2 col-lg-3">
+  <div>
+    <ul class="list-unstyled">
+      <li class="d-flex align-items-center">
+        <%= link_to users_guest_sign_in_path, method: :post do %>
+        <div class="d-none d-lg-block">
+          <%= image_tag "new_icon_lg.png", class:"mt-2 pr-2" %>
+          ゲストとして投稿
+        </div>
+        <div class="d-block d-lg-none">
+          <%= image_tag "new_icon_lg.png", class:"mt-2 pl-2" %>
+        </div>
+        <% end %>
+      </li>
+      <li class="d-flex align-items-center">
+        <%= link_to new_user_registration_path do %>
+        <div class="d-none d-lg-block">
+          <%= image_tag "signup_icon_lg.png", class:"mt-2 pr-2" %>
+          新規登録
+        </div>
+        <div class="d-block d-lg-none">
+          <%= image_tag "signup_icon_lg.png", class:"mt-2 pl-2" %>
+        </div>
+        <% end %>
+      </li>
+      <li class="d-flex align-items-center">
+        <%= link_to new_user_session_path do %>
+        <div class="d-none d-lg-block">
+          <%= image_tag "login_icon_lg.png", class:"mt-2 pr-2" %>
+          ログイン
+        </div>
+        <div class="d-block d-lg-none">
+          <%= image_tag "login_icon_lg.png", class:"mt-2 pl-2" %>
+        </div>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>

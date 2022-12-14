@@ -9,10 +9,12 @@
       <% end %>
     <% elsif admin_signed_in? %>
     <% else %>
-    <div class="col-12 mt-2 border bg-white p-3 text-center">
-      <h4>KaiRanへようこそ！</h4>
-      KaiRanはお知らせや告知を投稿し、自分のSNSで共有できるサービスです。
-    </div>
+      <%= link_to "/about", class:"text-decoration-none" do %>
+        <div class="col-12 mt-2 border bg-white p-3 text-center text-info">
+          <h4>KaiRanへようこそ！</h4>
+          KaiRanはお知らせや告知を投稿し、自分のSNSで共有できるサービスです。
+        </div>
+      <% end %>
     <% end %>
 
     <div class="row mt-2 mt-lg-4">
@@ -20,24 +22,7 @@
         <%= render 'public/users/menu'%>
       <% elsif admin_signed_in? %>
       <% else %>
-        <div class="col-12 col-lg-3">
-          <div>
-            <ul class="list-unstyled">
-              <li class="d-flex align-items-center">
-                <%= image_tag "new_icon_lg.png", class:"mt-2 pr-2" %>
-                <%= link_to "ゲストとして投稿する", users_guest_sign_in_path, method: :post %>
-              </li>
-              <li class="d-flex align-items-center">
-                <%= image_tag "new_icon_lg.png", class:"mt-2 pr-2" %>
-                <%= link_to "お知らせを投稿する", new_user_session_path %>
-              </li>
-              <li class="d-flex align-items-center">
-                <%= image_tag "clip_icon_lg.png", class:"mt-2 pr-2" %>
-                <%= link_to "クリップしたお知らせ", new_user_session_path %>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <%= render 'public/homes/menu'%>
       <% end %>
 
       <div class="col-10 col-lg-6">

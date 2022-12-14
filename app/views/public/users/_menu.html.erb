@@ -34,6 +34,7 @@
         </div>
         <% end %>
       </li>
+      <% if current_user.display_name != "guestuser" %>
       <li class="d-flex align-items-center">
         <%= link_to users_information_edit_path do %>
         <div class="d-none d-lg-block">
@@ -45,6 +46,7 @@
         </div>
         <% end %>
       </li>
+      <% end %>
     </ul>
   </div>
 </div>

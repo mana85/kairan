@@ -2,7 +2,12 @@
   <div class="container">
 
     <div class="row mt-2 mt-lg-4">
-      <%= render 'public/users/menu'%>
+      <% if user_signed_in? %>
+        <%= render 'public/users/menu'%>
+      <% elsif admin_signed_in? %>
+      <% else %>
+        <%= render 'public/homes/menu'%>
+      <% end %>
 
       <div class="col-10 col-lg-6">
         <div>

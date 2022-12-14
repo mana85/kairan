@@ -1,5 +1,48 @@
 <main>
   <div class="container">
-    <h1>About！</h1>
+    <div class="row mt-2 mt-lg-2">
+
+      <div class="col-12 col-lg-3">
+        <%= link_to "＜＜前のページに戻る", :back %>
+      </div>
+
+      <div class="col-10 offset-1">
+        <div class="border bg-white p-2 p-lg-5">
+          <div class="text-center mt-5 col-12">
+            <%= image_tag "about_top.png", class:"img-fluid" %>
+          </div>
+          <h2 class="text-center mt-5">
+            KaiRanについて
+          </h2>
+          <div class="text-center mt-5 col-12">
+            <%= image_tag "about_main_image.png", class:"img-fluid" %>
+          </div>
+          <div class="mt-5">
+            KaiRanはお知らせや告知を簡単に投稿・共有できるコミュニティサイトです。<br />
+            創作や音楽活動を行う個人やグループ、配信者、イベント主催者など<br />
+            ホームページを作成するほどではないけどSNSだけのお知らせでは物足りない人たちと<br />
+            SNSだけで追いかけるだけだと少し不便だと考えている人たちが<br />
+            便利に気軽に使えるサービスを想定しています。
+          </div>
+          <div class="text-center mt-5">
+            <%= image_tag "home_icon_lg.png", size: "25x25" %>
+            <%= link_to "KaiRan", "/" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-10 offset-1 mt-3">
+        <div class="border bg-white p-5 text-center">
+          <h5 class="p-3 text-info">共有</h5>
+            <!--シェア機能-->
+            <!--URLをコピーする-->
+            <input id="copyTarget"  type="text" value=<%= "#{request.url}" %> readonly style="display:inline-block;", class="pr-2 col-8 form-control">
+            <%= image_tag 'share_icon_lg.png', onclick:"copyToClipboard()", style:"cursor: pointer;", class:"pr-3" %>
+            <!--Twitterに共有する-->
+            <%=link_to image_tag('Twitter_icon_lg.png'), "https://twitter.com/share?url=#{request.url}/&text=「KaiRanについて」", title: 'Twitter', target: '_blank', class:"pr-2" %>
+        </div>
+      </div>
+
+    </div>
   </div>
 </main>

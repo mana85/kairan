@@ -1,7 +1,9 @@
 <main>
   <div class="container">
     <div class="col-12 col-lg-6 offset-lg-3">
+      <% if admin_signed_in? %>
         <%= render 'admin/flyers/index', flyers: @flyers %>
+      <% end %>
     </div>
   </div>
 </main>
