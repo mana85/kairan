@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :ensure_guest_user, only:[:edit]
+  before_action :ensure_guest_user, only: [:edit]
   def show
     # 自分のページとしての表示と他のユーザーの詳細表示の出し分けをする
     if request.fullpath == "/users/my_page"
@@ -34,23 +34,21 @@ class Public::UsersController < ApplicationController
     @user = current_user
     Flyer.where(user_id: @user.id).update_all(is_deleted: true)
     Comment.where(user_id: @user.id).update_all(is_deleted: true)
-    @user.update(is_delete:true)
+    @user.update(is_delete: true)
     reset_session
     redirect_to root_path
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(:display_name, :description, :profile_image, :url)
-  end
-
-  def ensure_guest_user
-    @user = User.find(current_user.id)
-    if @user.display_name == "guestuser"
-      redirect_to user_path(current_user)
-      flash[:notice] = 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    def user_params
+      params.require(:user).permit(:display_name, :description, :profile_image, :url)
     end
-  end
 
+    def ensure_guest_user
+      @user = User.find(current_user.id)
+      if @user.display_name == "guestuser"
+        redirect_to user_path(current_user)
+        flash[:notice] = "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      end
+    end
 end

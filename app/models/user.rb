@@ -18,11 +18,11 @@ class User < ApplicationRecord
   # 表示名(50文字まで)
   validates :display_name, presence: true, length: { maximum: 25 }
   # URL
-  validates :url, format: /\A#{URI::regexp(%w(http https))}\z/
+  validates :url, format: /\A#{URI.regexp(%w(http https))}\z/
 
   # ゲストログイン
   def self.guest
-    find_or_create_by!(display_name: 'guestuser', email: 'guest@example.com') do |user|
+    find_or_create_by!(display_name: "guestuser", email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
       user.display_name = "guestuser"
       user.url = "http://"
@@ -36,6 +36,6 @@ class User < ApplicationRecord
 
   # アイコン用の画像
   def get_profile_image
-    (profile_image.attached?) ? profile_image: 'no_image.jpg'
+    (profile_image.attached?) ? profile_image : "no_image.jpg"
   end
 end

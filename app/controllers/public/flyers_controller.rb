@@ -1,5 +1,5 @@
 class Public::FlyersController < ApplicationController
-  before_action :authenticate_user!,only: [:new]
+  before_action :authenticate_user!, only: [:new]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def new
@@ -10,7 +10,7 @@ class Public::FlyersController < ApplicationController
     @flyer = Flyer.find(params[:id])
     @comment = Comment.new
     # リマインダーとしてアラートされた告知を閲覧したときだけクリップのアラート確認項目をTrueに更新する
-    if(params[:alert_check])
+    if params[:alert_check]
       current_user.clips.find_by(flyer_id: @flyer.id).update(is_alert: true)
     end
   end
@@ -24,14 +24,14 @@ class Public::FlyersController < ApplicationController
   def create
     @flyer = Flyer.new(flyer_params)
     @flyer.user_id = current_user.id
-    tag_list = params[:flyer][:tag_name].split(',')
+    tag_list = params[:flyer][:tag_name].split(",")
     if @flyer.save
       @flyer.save_tags(tag_list)
       flash[:notice] = "You have created flyer successfully!"
       redirect_to flyer_path(@flyer)
     else
       @flyers = Flyer.all.order(id: :DESC)
-      render 'index'
+      render "index"
     end
   end
 
@@ -42,10 +42,10 @@ class Public::FlyersController < ApplicationController
   end
 
   def update
-    tag_list = params[:flyer][:tag_name].split(',')
+    tag_list = params[:flyer][:tag_name].split(",")
     if @flyer.update(flyer_params)
       @flyer.save_tags(tag_list)
-      flash[:notice] = 'You have updated flyer successfully!'
+      flash[:notice] = "You have updated flyer successfully!"
       redirect_to flyer_path(@flyer)
     else
       render "edit"
@@ -80,15 +80,14 @@ class Public::FlyersController < ApplicationController
   end
 
   private
-
-  def flyer_params
-    params.require(:flyer).permit(:title, :body, :image, :banner, :url, :alert_date, :is_deleted)
-  end
-
-  def ensure_correct_user
-    @flyer = Flyer.find(params[:id])
-    unless @flyer.user == current_user
-      redirect_to flyers_path
+    def flyer_params
+      params.require(:flyer).permit(:title, :body, :image, :banner, :url, :alert_date, :is_deleted)
     end
-  end
+
+    def ensure_correct_user
+      @flyer = Flyer.find(params[:id])
+      unless @flyer.user == current_user
+        redirect_to flyers_path
+      end
+    end
 end

@@ -15,7 +15,7 @@ class Flyer < ApplicationRecord
   # バリデーション
   validates :title, presence: true
   validates :body, presence: true
-  validates :url, format: /\A#{URI::regexp(%w(http https))}\z/, allow_blank: true
+  validates :url, format: /\A#{URI.regexp(%w(http https))}\z/, allow_blank: true
 
   # クリップ取得
   def cliped_by?(user)
