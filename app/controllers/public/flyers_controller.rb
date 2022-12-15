@@ -27,9 +27,8 @@ class Public::FlyersController < ApplicationController
     tag_list = params[:flyer][:tag_name].split(',')
     if @flyer.save
       @flyer.save_tags(tag_list)
-      redirect_to "/"
-      # redirect_to flyer_path(@flyer)
-      # notice:"You have created flyer successfully!"
+      flash[:notice] = "You have created flyer successfully!"
+      redirect_to flyer_path(@flyer)
     else
       @flyers = Flyer.all.order(id: :DESC)
       render 'index'
@@ -46,8 +45,8 @@ class Public::FlyersController < ApplicationController
     tag_list = params[:flyer][:tag_name].split(',')
     if @flyer.update(flyer_params)
       @flyer.save_tags(tag_list)
+      flash[:notice] = 'You have updated flyer successfully!'
       redirect_to flyer_path(@flyer)
-      # notice: "You have updated book successfully!"
     else
       render "edit"
     end
@@ -76,9 +75,9 @@ class Public::FlyersController < ApplicationController
     @flyers = Flyer.where(id: tag_flyers).page(params[:page])
   end
 
-  # 検索
-    def search_word
-    end
+  # 検索は今回はGemで実装
+  def search_word
+  end
 
   private
 

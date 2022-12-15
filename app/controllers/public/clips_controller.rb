@@ -1,4 +1,5 @@
 class Public::ClipsController < ApplicationController
+  # 基本的にはいいねと同じ
   def create
     flyer = Flyer.find(params[:flyer_id])
     @clip = current_user.clips.new(flyer_id: flyer.id)

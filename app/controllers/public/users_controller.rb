@@ -4,15 +4,16 @@ class Public::UsersController < ApplicationController
     # 自分のページとしての表示と他のユーザーの詳細表示の出し分けをする
     if request.fullpath == "/users/my_page"
       @is_profile = false
-      # 新着の告知
-      @flyers = Flyer.all.order(id: :DESC)
-      # アラートを出している告知をピックアップする
+      # 自分のページを表示するときはアラートのある告知と新着の告知を表示する
+      @flyers = Flyer.all.order(id: :DESC).page(params[:page])
+      # アラートを出している告知をピックアップ
       today = Date.today
       @alert_flyers = Flyer.where(id: current_user.clips.where(is_alert: false).pluck(:flyer_id)).where(is_deleted: false).where("alert_date <= ?", today)
     else
+      # 他のユーザーのページとして表示するときはその人のプロフィールとその人の投稿を表示する
       @is_profile = true
       @user = User.find(params[:id])
-      @flyers = Flyer.where(user_id: @user)
+      @flyers = Flyer.where(user_id: @user).page(params[:page])
     end
   end
 
@@ -47,7 +48,8 @@ class Public::UsersController < ApplicationController
   def ensure_guest_user
     @user = User.find(current_user.id)
     if @user.display_name == "guestuser"
-      redirect_to user_path(current_user), notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+      redirect_to user_path(current_user)
+      flash[:notice] = 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
   end
 
