@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     end
 
 
-    # 検索にransackを使用してみる
+    # 検索にransackを使用する
     def set_search
       @q = Flyer.ransack(params[:q])
       # @flyers = @q.result(distinct: true).page(params[:page]).per(8)
