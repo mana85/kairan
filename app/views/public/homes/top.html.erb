@@ -3,9 +3,11 @@
 
     <% if user_signed_in? %>
       <% if @alert > 0 %>
-        <div class="col-8 offset-2 mt-2 alert-success p-3 text-center">
-          <%= @alert %>件のリマインダーがあります。
-        </div>
+        <%= link_to users_my_page_path, class:"text-decoration-none" do %>
+          <div class="col-12 col-lg-8 offset-lg-2 mt-2 alert-success p-3 text-center">
+            <%= @alert %>件のリマインダーがあります。
+          </div>
+        <% end %>
       <% end %>
     <% elsif admin_signed_in? %>
     <% else %>
