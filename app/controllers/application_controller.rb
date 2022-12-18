@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     def set_search
       @q = Flyer.ransack(params[:q])
       # @flyers = @q.result(distinct: true).page(params[:page]).per(8)
-      @flyers = @q.result.order(created_at: :DESC)
+      @flyers = @q.result.order(created_at: :DESC).page(params[:page])
     end
 
   protected
