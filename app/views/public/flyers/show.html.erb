@@ -38,7 +38,7 @@
               <% end %>
             <% end %>
           </div>
-          <div class="col-1 offset-11 mt-3">
+          <div class="col-1  offset-10 offset-lg-11 mt-3">
             <!--クリップ-->
             <div class=<%= "clip-" + @flyer.id.to_s %> style="width:40px;height:40px;display:inline-block;">
               <%= render "public/clips/btn", flyer: @flyer %>
@@ -54,7 +54,7 @@
       </div>
 
       <div class="col-10 offset-1 mt-3">
-        <div class="border bg-white p-5 text-center">
+        <div class="border bg-white p-3 p-lg-5 text-center">
           <h5 class="p-3 text-info">共有</h5>
             <!--シェア機能-->
             <!--URLをコピーする-->
@@ -67,7 +67,7 @@
 
       <!--表示されているお知らせに対するコメント-->
       <div class="col-10 offset-1 mt-3">
-        <div class="border bg-white p-5">
+        <div class="border bg-white p-4 p-lg-5">
           <%= render "public/comments/form", flyer: @flyer, comment: @comment %>
           <div class="comment-index">
             <%= render "public/comments/index", flyer: @flyer %>

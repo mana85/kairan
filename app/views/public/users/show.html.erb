@@ -6,20 +6,7 @@
         <%= render 'public/users/menu'%>
       <% elsif admin_signed_in? %>
       <% else %>
-        <div class="col-12 col-lg-3">
-          <div>
-            <ul class="list-unstyled">
-              <li class="d-flex align-items-center">
-                <%= image_tag "new_icon_lg.png", class:"mt-2 pr-2" %>
-                <%= link_to "お知らせを投稿する", new_user_session_path %>
-              </li>
-              <li class="d-flex align-items-center">
-                <%= image_tag "clip_icon_lg.png", class:"mt-2 pr-2" %>
-                <%= link_to "クリップしたお知らせ", new_user_session_path %>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <%= render 'public/homes/menu'%>
       <% end %>
 
       <div class="col-10 col-lg-6">
