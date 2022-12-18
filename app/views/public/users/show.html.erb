@@ -47,19 +47,19 @@
           <div>
             <% if @is_profile %>
                 <h4 class="text-info d-flex align-items-center mt-3">
-                  <%= image_tag "flyers_icon_lg.png", class:"mt-2 pr-2" %>
+                  <%= image_tag "flyers_icon_lg.png", class:"mt-3 pr-2" %>
                   <%= @user.display_name %>さんのお知らせ
                 </h4>
             <% else %>
               <% if @alert_flyers.present? %>
                 <h4 class="text-info d-flex align-items-center">
-                  <%= image_tag "alert_icon_lg.png", class:"mt-2 pr-2" %>
+                  <%= image_tag "alert_icon_lg.png", class:"mt-3 pr-2" %>
                   リマインダー
                 </h4>
                 <%= render 'public/flyers/alert_index', alert_flyers: @alert_flyers %>
               <% end %>
                 <h4 class="text-info d-flex align-items-center">
-                  <%= image_tag "flyers_icon_lg.png", class:"mt-2 pr-2" %>
+                  <%= image_tag "flyers_icon_lg.png", class:"mt-3 pr-2" %>
                   新着お知らせ
                 </h4>
             <% end %>

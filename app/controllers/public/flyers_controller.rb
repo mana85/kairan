@@ -30,8 +30,8 @@ class Public::FlyersController < ApplicationController
       flash[:notice] = "You have created flyer successfully!"
       redirect_to flyer_path(@flyer)
     else
-      @flyers = Flyer.all.order(id: :DESC)
-      render "index"
+      # @flyers = Flyer.all.order(id: :DESC)
+      render "new"
     end
   end
 

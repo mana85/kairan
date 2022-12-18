@@ -1,4 +1,13 @@
 
+  <% if flyer.errors.any? %>
+    <%= flyer.errors.count %>件のエラーが発生しました
+    <ul>
+      <% flyer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <%= form_with model: flyer, local: true do |f| %>
     <div class="form-group">
       <%= f.label "告知タイトル" %>
