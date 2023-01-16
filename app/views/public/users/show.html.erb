@@ -9,11 +9,11 @@
         <%= render 'public/homes/menu'%>
       <% end %>
 
-      <div class="col-10 col-lg-6">
+      <div class="col-10 col-lg-9">
 
           <% if @is_profile %>
           <!--告知やコメントのユーざーリンクから表示する場合はプロフィールリンクを表示する-->
-          <div class="col-12 mt-2 border bg-white p-0 text-center">
+          <div class="col-10 mt-2 border bg-white p-0 text-center">
             <div class="bg-info p-2" style="width:100%;">
               <%= image_tag @user.get_profile_image, size: "80x80", class:"rounded-circle" %>
               <h4 class="text-white"><%= @user.display_name %></h4>
