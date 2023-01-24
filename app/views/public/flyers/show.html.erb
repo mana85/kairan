@@ -40,7 +40,7 @@
           </div>
           <div class="col-1  offset-10 offset-lg-11 mt-3">
             <!--クリップ-->
-            <div class=<%= "clip-" + @flyer.id.to_s %> style="width:40px;height:40px;display:inline-block;">
+            <div class="clip_btn_middle" class=<%= "clip-" + @flyer.id.to_s %> >
               <%= render "public/clips/btn", flyer: @flyer %>
             </div>
           </div>
@@ -58,8 +58,8 @@
           <h5 class="p-3 text-info">共有</h5>
             <!--シェア機能-->
             <!--URLをコピーする-->
-            <input id="copyTarget"  type="text" value=<%= "#{request.url}" %> readonly style="display:inline-block;", class="pr-2 col-8 form-control">
-            <%= image_tag 'share_icon_lg.png', onclick:"copyToClipboard()", style:"cursor: pointer;", class:"pr-3" %>
+            <input id="copyTarget"  type="text" value=<%= "#{request.url}" %> readonly, class="pr-2 col-8 form-control copy_target">
+            <%= image_tag 'share_icon_lg.png', onclick:"copyToClipboard()", class:"pr-3 share_icon_image" %>
             <!--Twitterに共有する-->
             <%=link_to image_tag('Twitter_icon_lg.png'), "https://twitter.com/share?url=#{request.url}/&text=#{@flyer.title}", title: 'Twitter', target: '_blank', class:"pr-2" %>
         </div>
